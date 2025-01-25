@@ -1,11 +1,15 @@
 extends Node
 
 # preload the scene file we are making instances of
-var ScrollText = preload("res://scenes/scrollText.tscn")
+var ScrollText = preload("res://scenes/ScrollText.tscn")
+var TextBubble = preload("res://scenes/TextBubble.tscn")
 
 # load in the file reference itself here
 var text_file_location = "res://assets/exampleText.txt"
 var listScrollTexts = []
+var listTextBubbles = []
+var score:int = 0
+var base_score: int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,13 +23,14 @@ func setUp() -> void:
 	# go into the text file, load all the words in it
 	# split those words on the /n and the new line character
 	# turn this into an array and save it globally.
-	
+	$TextBubble.bubble_pop.connect(_on_bubble_pop)
 	var file_text = load_text_file(text_file_location)
 	if (file_text != null): 
 		var textList = file_text.split("/n", false, 0)
 		for text:String in textList:
 			var scroll_text_instance = ScrollText.instantiate()
 			scroll_text_instance.scrolling_text = text
+			scroll_text_instance.off_screen.connect(_on_scrollText_off_screen)
 			listScrollTexts.push_back(scroll_text_instance)
 			pass
 	pass
@@ -41,9 +46,19 @@ func scrollWords() -> void:
 	# and they will signal when they are done then we can set off the next one. 
 	
 	if (listScrollTexts.size() > 0):
-		listScrollTexts[0].off_screen.connect(_on_scrollText_off_screen)
 		add_child(listScrollTexts[0])
 	
+	pass
+
+func makeBubbles() -> void: 
+	#bubbles will be worth amount when popped
+	#bubbles will contain text
+	#buubles will have "correctness" on a scale of -2 to 2
+	pass
+
+func updateScore(newScore: int):
+	print_debug(newScore)
+	score = newScore
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -57,5 +72,16 @@ func _on_scrollText_off_screen(node: Node2D):
 	remove_child(node)
 	node.queue_free()
 	listScrollTexts.remove_at(0)
+	makeBubbles()
 	scrollWords()
+	pass
+
+func _on_bubble_pop(bubble: Node2D):
+	# add score and trigger it's pop anim
+	bubble.play_pop_anim()
+	updateScore(score+base_score)
+	# maybe make new bubbles?
+	pass
+
+func _on_select_bubble(bubble: Node2D):
 	pass
