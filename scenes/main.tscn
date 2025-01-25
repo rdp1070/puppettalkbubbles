@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=3 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
+[ext_resource type="PackedScene" uid="uid://in3pp8aefbr2" path="res://scenes/textBubble.tscn" id="2_3dg57"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7hocn")
+
+[node name="TextBubble" parent="." instance=ExtResource("2_3dg57")]
+correctness = 1
