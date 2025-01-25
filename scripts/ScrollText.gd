@@ -1,0 +1,56 @@
+extends Node
+
+signal off_screen
+
+@onready
+var textLabel = $RichTextLabel
+
+@export
+var speed:int = 5
+@export
+var scrolling_text:String = "This is the default text."
+@export_color_no_alpha
+var text_color:Color = Color.BLACK
+
+var position:Vector2 = Vector2.ZERO
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	setUp()
+	pass # Replace with function body.
+
+func setUp() -> void:
+	# we setting up all the variables here.
+	var vpsize = get_viewport().get_visible_rect().size
+	# this sets it's initial position to the full width by something 
+	# in the top 3rd of the screen
+	position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
+	self.global_position = position
+	
+	setText(scrolling_text)
+	pass
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if (isPositionOffScreen()):
+		off_screen.emit(self)
+	else: 
+		moving(delta)
+	pass
+
+func setText(newText: String) -> void:
+	# set the textLabel to have the text assigned to it.
+	print_debug("in setText")
+	textLabel.text = newText
+	pass
+
+func moving(delta: float) -> void:
+	#print_debug("in moving")
+	# I feel like delta is supposed to be involved in this calculation of movement somehow :?
+	self.global_position.x = self.global_position.x - (speed)
+	pass
+
+func isPositionOffScreen() -> bool:
+	# check if the textbox is offscreen
+	var offscreenX = 0-textLabel.get_content_width()
+	return self.global_position.x <= offscreenX
