@@ -1,10 +1,11 @@
 extends Node
+class_name ScrollText 
 
 signal off_screen
 
 @onready var textLabel = $RichTextLabel
 
-@export var speed:int = 5
+@export var speed:int = 6
 @export var scrolling_text:String = "This is the default text."
 @export_color_no_alpha var text_color:Color = Color.BLACK
 

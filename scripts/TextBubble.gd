@@ -1,4 +1,5 @@
 extends Node
+class_name TextBubble
 
 @export var bubble_text:String = "Default Button Text"
 @onready var text_Label:RichTextLabel = $TextureButton/RichTextLabel
@@ -8,8 +9,10 @@ var disabled:bool = false
 var max_wiggle = .15
 var score_mode:bool = false
 var startingPosition:Vector2 = Vector2.ZERO
+var id = -1
 
 signal bubble_pop
+signal select_bubble
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -49,6 +52,9 @@ func _on_texture_button_pressed() -> void:
 		if disabled == false:
 			bubble_pop.emit(self)
 			disabled = true
+	else:
+		select_bubble.emit(self)
+		disabled = true
 	pass # Replace with function body.
 
 func play_pop_anim():
