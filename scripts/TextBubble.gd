@@ -6,7 +6,7 @@ extends Node
 var disabled:bool = false
 @export var wiggle_speed:float = .02
 var max_wiggle = .15
-
+var score_mode:bool = false
 var startingPosition:Vector2 = Vector2.ZERO
 
 signal bubble_pop
@@ -32,6 +32,10 @@ func setUp() -> void:
 	var vpsize = get_viewport().get_visible_rect().size
 	self.global_position = Vector2(randi() % int(vpsize.x), randi() % int(vpsize.y))
 	setText(bubble_text)
+	var rand_scale = (randf_range(.8, 1.5))
+	self.scale.x = rand_scale
+	self.scale.y = rand_scale
+	self.z_index = randi_range(-4,4)
 	pass
 
 func setText(newText: String) -> void:
@@ -41,9 +45,10 @@ func setText(newText: String) -> void:
 	pass
 
 func _on_texture_button_pressed() -> void:
-	if disabled == false:
-		bubble_pop.emit(self)
-		disabled = true
+	if score_mode == false: 
+		if disabled == false:
+			bubble_pop.emit(self)
+			disabled = true
 	pass # Replace with function body.
 
 func play_pop_anim():

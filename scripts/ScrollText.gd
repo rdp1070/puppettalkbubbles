@@ -22,7 +22,7 @@ func setUp() -> void:
 	# in the top 3rd of the screen
 	position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
 	self.global_position = position
-	
+	self.z_index = 0
 	setText(scrolling_text)
 	pass
 

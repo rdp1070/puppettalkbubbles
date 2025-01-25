@@ -23,7 +23,6 @@ func setUp() -> void:
 	# go into the text file, load all the words in it
 	# split those words on the /n and the new line character
 	# turn this into an array and save it globally.
-	$TextBubble.bubble_pop.connect(_on_bubble_pop)
 	var file_text = load_text_file(text_file_location)
 	if (file_text != null): 
 		var textList = file_text.split("/n", false, 0)
@@ -50,11 +49,18 @@ func scrollWords() -> void:
 	
 	pass
 
-func makeBubbles() -> void: 
+func makeBubbles(n:int) -> void: 
 	#bubbles will be worth amount when popped
 	#bubbles will contain text
 	#buubles will have "correctness" on a scale of -2 to 2
-	pass
+	for x in n:
+		var text_bubble_instance = TextBubble.instantiate()
+		text_bubble_instance.bubble_text = "Default bubble text"
+		text_bubble_instance.bubble_pop.connect(_on_bubble_pop)
+		text_bubble_instance.correctness = 1
+		listTextBubbles.push_back(text_bubble_instance)
+		add_child(text_bubble_instance)
+		pass
 
 func updateScore(newScore: int):
 	print_debug(newScore)
@@ -72,7 +78,7 @@ func _on_scrollText_off_screen(node: Node2D):
 	remove_child(node)
 	node.queue_free()
 	listScrollTexts.remove_at(0)
-	makeBubbles()
+	makeBubbles(randi_range(1,5))
 	scrollWords()
 	pass
 
