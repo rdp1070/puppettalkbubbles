@@ -10,19 +10,30 @@ signal off_screen
 
 var position:Vector2 = Vector2.ZERO
 
+var going_left:bool = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setUp()
 	pass # Replace with function body.
 
 func setUp() -> void:
+	
+	going_left = randi() & 1
 	# we setting up all the variables here.
 	var vpsize = get_viewport().get_visible_rect().size
 	# this sets it's initial position to the full width by something 
 	# in the top 3rd of the screen
-	position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
+	if going_left:
+		position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
+		speed = speed * -1
+	if not going_left:
+		position = Vector2(0-textLabel.get_content_width(), randi() % int(vpsize.y/3))
+		speed = abs(speed)
+	
 	self.global_position = position
 	self.z_index = 0
+	
 	setText(scrolling_text)
 	pass
 
@@ -36,17 +47,22 @@ func _process(delta: float) -> void:
 
 func setText(newText: String) -> void:
 	# set the textLabel to have the text assigned to it.
-	print_debug("in setText")
 	textLabel.text = newText
 	pass
 
 func moving(delta: float) -> void:
 	#print_debug("in moving")
 	# I feel like delta is supposed to be involved in this calculation of movement somehow :?
-	self.global_position.x = self.global_position.x - (speed)
+	self.global_position.x = self.global_position.x + (speed)
 	pass
 
 func isPositionOffScreen() -> bool:
 	# check if the textbox is offscreen
-	var offscreenX = 0-textLabel.get_content_width()
-	return self.global_position.x <= offscreenX
+	var offscreenXLeft = 0-textLabel.get_content_width()
+	var offscreenXRight = get_viewport().get_visible_rect().size.x
+	var isOffscreen = false
+	if going_left:
+		isOffscreen = self.global_position.x <= offscreenXLeft
+	else:
+		isOffscreen = self.global_position.x >= offscreenXRight
+	return isOffscreen
