@@ -4,6 +4,8 @@ extends Node
 @onready var text_Label:RichTextLabel = $TextureButton/RichTextLabel
 @export var correctness:int = 0
 var disabled:bool = false
+@export var wiggle_speed:float = .02
+var max_wiggle = .15
 
 var startingPosition:Vector2 = Vector2.ZERO
 
@@ -16,10 +18,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	wiggle()
+	wiggle(delta)
 	pass
 
-func wiggle() -> void: 
+func wiggle(delta: float) -> void: 
+	# wiggle on direction until you meet the target, then go the other direction.
+	if (abs(self.rotation) >= abs(max_wiggle)):
+		max_wiggle = -1 * max_wiggle
+	self.rotation = lerpf(self.rotation, PI/max_wiggle, (wiggle_speed * delta))
 	pass
 
 func setUp() -> void:

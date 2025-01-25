@@ -21,6 +21,7 @@ stretch_mode = 0
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
