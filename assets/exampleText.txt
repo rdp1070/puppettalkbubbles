@@ -1,4 +1,2 @@
 This is an example sentence. /n I want to make more than one object from these sentences. /n 
-I should interpret /n and new lines as breaks.
-
-And then get a list of 5 things. 
+I should interpret and new lines as breaks. /n And then get a list of 4 things. 
