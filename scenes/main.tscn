@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=4 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
+[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_3a0x6"]
+[ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="3_c8txr"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7hocn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3a0x6")
+autoplay = true
+bus = &"BackgroundMusic"
+
+[node name="OptionsMenu" parent="." instance=ExtResource("3_c8txr")]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0
