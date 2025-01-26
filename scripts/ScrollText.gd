@@ -5,7 +5,7 @@ signal off_screen
 
 @onready var textLabel = $RichTextLabel
 
-@export var speed:int = 6
+@export var speed:int = 300
 @export var scrolling_text:String = "This is the default text."
 @export_color_no_alpha var text_color:Color = Color.BLACK
 
@@ -54,7 +54,7 @@ func setText(newText: String) -> void:
 func moving(delta: float) -> void:
 	#print_debug("in moving")
 	# I feel like delta is supposed to be involved in this calculation of movement somehow :?
-	self.global_position.x = self.global_position.x + (speed)
+	self.global_position.x = self.global_position.x + (speed) * delta
 	pass
 
 func isPositionOffScreen() -> bool:

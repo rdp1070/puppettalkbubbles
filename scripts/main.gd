@@ -3,7 +3,13 @@ extends Node
 # preload the scene file we are making instances of
 var ScrollText = preload("res://scenes/ScrollText.tscn")
 var TextBubble = preload("res://scenes/TextBubble.tscn")
+
 @onready var belinda_anim:AnimationPlayer = $Sprite2D/AnimationPlayer
+
+
+# reference to Options Menu 
+@onready var optionsMenu = $OptionsMenu
+
 # load in the file reference itself here
 var sentence_text_file_location = "res://assets/text/sentences%s-%s.txt"
 var bubbles_text_file_location = "res://assets/text/bubbles%s-%s.txt"
@@ -19,11 +25,14 @@ var base_score: int = 10
 var current_scene: int = 1
 var current_phrase: int = 0
 
+var paused = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setUp()
 	scrollWords()
 	pass # Replace with function body.
+	optionsMenu.z_index = 100
 
 func reset():
 	popAllBubbles()
@@ -77,8 +86,19 @@ func updateScore(newScore: int):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("pause"):
+		_optionsMenu()
+
+func _optionsMenu():
+	if paused:
+		optionsMenu.hide()
+		Engine.time_scale = 1
+	else:
+		optionsMenu.show()
+		Engine.time_scale = 0
 	
+	paused = !paused
+
 func activateSelectMode(): 
 	belinda_anim.stop()
 #	 go over the remaining bubbles on the screen and turn score mode on

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bouq03iil5qv4"
+path="res://.godot/imported/Night in Venice.mp3-451e25abd936a25d01845fa180348441.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Night in Venice.mp3"
+dest_files=["res://.godot/imported/Night in Venice.mp3-451e25abd936a25d01845fa180348441.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

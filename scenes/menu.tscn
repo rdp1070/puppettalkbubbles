@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqs16gnwllox3"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_j3osm"]
+[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_u6jmv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlo5n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0g4j"]
+bg_color = Color(1, 0.356863, 0.623529, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tkkh"]
+bg_color = Color(1, 0.172549, 0.572549, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1vlc"]
+bg_color = Color(1, 0.52549, 0.698039, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpvux"]
+bg_color = Color(1, 0.356863, 0.623529, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8ojj"]
+bg_color = Color(1, 0.172549, 0.572549, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j3osm")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -367.0
+offset_right = 296.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k0g4j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0tkkh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
+text = "Play"
+
+[node name="Audio" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wpvux")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a8ojj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
+text = "Background Music On/Off"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wpvux")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a8ojj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_u6jmv")
+autoplay = true
+bus = &"BackgroundMusic"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
