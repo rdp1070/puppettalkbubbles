@@ -5,13 +5,18 @@ var ScrollText = preload("res://scenes/ScrollText.tscn")
 var TextBubble = preload("res://scenes/TextBubble.tscn")
 
 # load in the file reference itself here
-var text_file_location = "res://assets/exampleText.txt"
+var sentence_text_file_location = "res://assets/text/sentences%s-%s.txt"
+var bubbles_text_file_location = "res://assets/text/bubbles%s-%s.txt"
 var listScrollTexts :Array[ScrollText] = []
-var dictTextBubbles : = {}
+var activeTextBubblesDict : = {}
+var queuedTextBubbles = {}
 var score:int = 0
 var base_score: int = 10
 
-var current_level: int = 0
+@export var current_level: int = 1
+@export var max_scenes = 2
+var current_scene: int = 1
+var current_phrase: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,23 +26,20 @@ func _ready() -> void:
 
 func reset():
 	popAllBubbles()
+	current_scene+=1
+	setUp()
+	scrollWords()
 pass
 
 func setUp() -> void:
-	print_debug("inside setup")
 	# we are going to load in the text from the file here.
 	# go into the text file, load all the words in it
 	# split those words on the /n and the new line character
 	# turn this into an array and save it globally.
-	var file_text = load_text_file(text_file_location)
-	if (file_text != null): 
-		var textList = file_text.split("/n", false, 0)
-		for text:String in textList:
-			var scroll_text_instance = ScrollText.instantiate()
-			scroll_text_instance.scrolling_text = text
-			scroll_text_instance.off_screen.connect(_on_scrollText_off_screen)
-			listScrollTexts.push_back(scroll_text_instance)
-			pass
+	if (current_scene <= max_scenes):
+		current_phrase=0
+		load_sentences()
+		load_bubbles()
 	pass
 
 func load_text_file(path:String):
@@ -56,20 +58,14 @@ func scrollWords() -> void:
 		activateSelectMode()
 	pass
 
-func makeBubbles(n:int) -> void: 
+func makeBubbles() -> void: 
 	#bubbles will be worth amount when popped
 	#bubbles will contain text
-	#buubles will have "correctness" on a scale of -2 to 2
-	for x in n:
-		var text_bubble_instance:TextBubble = TextBubble.instantiate()
-		text_bubble_instance.bubble_text = "Default bubble text"
-		text_bubble_instance.bubble_pop.connect(_on_bubble_pop)
-		text_bubble_instance.select_bubble.connect(_on_select_bubble)
-		text_bubble_instance.correctness = randi_range(-2, 2)
-		text_bubble_instance.id = randi_range(-10000,10000)
-		dictTextBubbles.get_or_add(text_bubble_instance.id, text_bubble_instance)
-		add_child(text_bubble_instance)
-		pass
+	for textBubble:TextBubble in queuedTextBubbles.get(current_phrase):
+		add_child(textBubble)
+		activeTextBubblesDict.get_or_add(textBubble.id, textBubble)
+	pass
+	current_phrase+=1
 
 func updateScore(newScore: int):
 	print_debug(newScore)
@@ -82,7 +78,7 @@ func _process(delta: float) -> void:
 	
 func activateSelectMode(): 
 #	 go over the remaining bubbles on the screen and turn score mode on
-	for bubble:TextBubble in dictTextBubbles.values():
+	for bubble:TextBubble in activeTextBubblesDict.values():
 		bubble.score_mode = true
 	pass
 
@@ -90,11 +86,51 @@ func playReaction(correctness:int):
 	pass
 
 func popAllBubbles():
-	for bubble:TextBubble in dictTextBubbles.values():
+	for bubble in activeTextBubblesDict.values():
 		bubble.play_pop_anim()
-		dictTextBubbles.erase(bubble.id)
-		
+		activeTextBubblesDict.erase(bubble.id)
+	queuedTextBubbles = {}
 	pass
+	
+
+func load_sentences():
+	var file_text = load_text_file(sentence_text_file_location % [current_level, current_scene])
+	if (file_text != null): 
+		var textList = file_text.split("/n", false, 0)
+		for text:String in textList:
+			var scroll_text_instance = ScrollText.instantiate()
+			scroll_text_instance.scrolling_text = text
+			scroll_text_instance.off_screen.connect(_on_scrollText_off_screen)
+			listScrollTexts.push_back(scroll_text_instance)
+			pass
+	pass
+	
+func load_bubbles():
+	var file_text = load_text_file(bubbles_text_file_location % [current_level, current_scene])
+	if (file_text != null): 
+		# parse the string to get the parts out to fill the object
+		# then when the object is created, add that to the dict
+		var sceneList = file_text.split("/n", false, 0)
+		var index = 0
+		for scene:String in sceneList:
+			var bubble_values = scene.split(";")
+			var sceneBubbleArray = []
+			for bubble in bubble_values:
+				var text_bubble_instance:TextBubble = TextBubble.instantiate()
+				var vals:PackedStringArray = bubble.split("|")
+				text_bubble_instance.bubble_text = vals[0]
+				text_bubble_instance.bubble_pop.connect(_on_bubble_pop)
+				text_bubble_instance.select_bubble.connect(_on_select_bubble)
+				text_bubble_instance.correctness = int(vals[0])
+				text_bubble_instance.id = randi_range(-10000,10000)
+				sceneBubbleArray.append(text_bubble_instance)
+				pass
+			queuedTextBubbles.get_or_add(index, sceneBubbleArray)
+			index+=1
+			pass
+		pass
+	pass
+
 
 # we need some kind of event catcher so the children who are the scrolling text can call back to it.
 # when that signal is recieved then start off the next one. Each child won't know about the next.
@@ -103,7 +139,7 @@ func _on_scrollText_off_screen(node: Node2D):
 	remove_child(node)
 	node.queue_free()
 	listScrollTexts.remove_at(0)
-	makeBubbles(randi_range(1,5))
+	makeBubbles()
 	scrollWords()
 	pass
 
@@ -111,12 +147,14 @@ func _on_bubble_pop(bubble: TextBubble):
 	# add score and trigger it's pop anim
 	bubble.play_pop_anim()
 	updateScore(score+base_score)
-	dictTextBubbles.erase(bubble.id)
+	activeTextBubblesDict.erase(bubble.id)
 	# play pop sound
 	pass
 
 func _on_select_bubble(bubble: TextBubble):
 	print_debug("inside select bubble")
+	updateScore(score+(base_score*bubble.correctness))
 	playReaction(bubble.correctness)
 	reset()
+	
 	pass

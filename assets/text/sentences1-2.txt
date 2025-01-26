@@ -1,0 +1,2 @@
+Sentence 1 .............. Scene 2 /n Sentence 2 ................. Scene 2 /n
+Sentence 3 ......................... Scene 2 /n Sentence 4 ............... Scene 2
