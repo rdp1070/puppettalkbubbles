@@ -6,9 +6,10 @@ var TextBubble = preload("res://scenes/TextBubble.tscn")
 
 @onready var belinda_anim:AnimationPlayer = $Sprite2D/AnimationPlayer
 
-
 # reference to Options Menu 
 @onready var optionsMenu = $OptionsMenu
+
+@onready var questionText = $QuestionText
 
 # load in the file reference itself here
 var sentence_text_file_location = "res://assets/text/sentences%s-%s.txt"
@@ -24,6 +25,7 @@ var base_score: int = 10
 @export var sentence_delay = 2
 var current_scene: int = 1
 var current_phrase: int = 0
+var last_sentence = ""
 
 var paused = false
 
@@ -36,6 +38,7 @@ func _ready() -> void:
 
 func reset():
 	popAllBubbles()
+	questionText.hide()
 	current_scene+=1
 	setUp()
 	scrollWords()
@@ -47,6 +50,7 @@ func setUp() -> void:
 	# split those words on the /n and the new line character
 	# turn this into an array and save it globally.
 	if (current_scene <= max_scenes):
+		questionText.hide()
 		current_phrase=0
 		load_sentences()
 		load_bubbles()
@@ -101,6 +105,8 @@ func _optionsMenu():
 
 func activateSelectMode(): 
 	belinda_anim.stop()
+	questionText.text = last_sentence
+	questionText.show()
 #	 go over the remaining bubbles on the screen and turn score mode on
 	for bubble:TextBubble in activeTextBubblesDict.values():
 		bubble.score_mode = true
@@ -127,6 +133,7 @@ func load_sentences():
 			scroll_text_instance.off_screen.connect(_on_scrollText_off_screen)
 			listScrollTexts.push_back(scroll_text_instance)
 			pass
+		last_sentence = listScrollTexts[listScrollTexts.size()-1].scrolling_text
 	pass
 	
 func load_bubbles():

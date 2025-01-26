@@ -34,7 +34,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "default text"
 fit_content = true
 scroll_active = false
-autowrap_mode = 0
+autowrap_mode = 2
 shortcut_keys_enabled = false
 
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

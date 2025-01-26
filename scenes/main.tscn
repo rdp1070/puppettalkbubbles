@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=12 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
 [ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_3a0x6"]
@@ -61,6 +61,9 @@ _data = {
 "talk_shocked": SubResource("Animation_vbo5f")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gjbvo"]
+bg_color = Color(0.835294, 0.647059, 0.341176, 1)
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7hocn")
 
@@ -98,3 +101,16 @@ bus = &"BackgroundMusic"
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
+
+[node name="QuestionText" type="RichTextLabel" parent="."]
+z_index = 50
+offset_left = 323.0
+offset_top = 28.0
+offset_right = 830.0
+offset_bottom = 131.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_styles/fill = SubResource("StyleBoxFlat_gjbvo")
+text = "This is the question text?"
+scroll_active = false
+shortcut_keys_enabled = false

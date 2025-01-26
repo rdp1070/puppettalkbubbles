@@ -19,23 +19,17 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func setUp() -> void:
-	
-	going_left = randi() & 1
 	# we setting up all the variables here.
 	var vpsize = get_viewport().get_visible_rect().size
+	setText(scrolling_text)
 	# this sets it's initial position to the full width by something 
 	# in the top 3rd of the screen
-	if going_left:
-		position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
-		speed = speed * -1
-	if not going_left:
-		position = Vector2(0-textLabel.get_content_width(), randi() % int(vpsize.y/3))
-		speed = abs(speed)
+	position = Vector2(vpsize.x, randi() % int(vpsize.y/3))
+	speed = speed * -1
 	
 	self.global_position = position
 	self.z_index = 0
 	
-	setText(scrolling_text)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
