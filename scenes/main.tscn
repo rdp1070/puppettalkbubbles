@@ -13,3 +13,6 @@ autoplay = true
 bus = &"BackgroundMusic"
 
 [node name="OptionsMenu" parent="." instance=ExtResource("3_c8txr")]
+visible = false
+offset_right = 1152.0
+offset_bottom = 648.0

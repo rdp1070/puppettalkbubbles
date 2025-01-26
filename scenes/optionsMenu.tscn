@@ -1,6 +1,38 @@
-[gd_scene load_steps=2 format=3 uid="uid://bswpnjcoljtht"]
+[gd_scene load_steps=8 format=3 uid="uid://bswpnjcoljtht"]
 
 [ext_resource type="Script" path="res://scripts/options_menu.gd" id="1_ycbg6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0n3ro"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7ghc"]
+bg_color = Color(0.999997, 0.357686, 0.623662, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3qni1"]
+bg_color = Color(0.999999, 0.170815, 0.572376, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_amxiv"]
+bg_color = Color(0.999999, 0.527251, 0.697518, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yqfwb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_inhjh"]
+bg_color = Color(1, 0.172549, 0.572549, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
 
 [node name="OptionsMenu" type="Control"]
 layout_mode = 3
@@ -9,28 +41,61 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
 script = ExtResource("1_ycbg6")
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.733333, 0.843137, 1, 0.435294)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -122.0
+offset_right = 300.0
+offset_bottom = 122.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 37
 
-[node name="Audio" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Audio" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Audio On/Off"
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0n3ro")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a7ghc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3qni1")
+theme_override_styles/normal = SubResource("StyleBoxFlat_amxiv")
+text = "Background Music On/Off"
 
-[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer2"]
 layout_mode = 2
-text = "Back"
-
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yqfwb")
+theme_override_styles/hover = SubResource("StyleBoxFlat_a7ghc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_inhjh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_amxiv")
 text = "Quit"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Audio" to="." method="_on_audio_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Audio" to="." method="_on_audio_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer2/Quit" to="." method="_on_quit_pressed"]
