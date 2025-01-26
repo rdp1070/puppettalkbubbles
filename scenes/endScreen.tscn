@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bjet43o3lua21"]
+[gd_scene load_steps=8 format=3 uid="uid://doj238tgiuevv"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_x4v0a"]
 [ext_resource type="Texture2D" uid="uid://cub2enlk4aw3a" path="res://assets/images/PBP-BG1.png" id="2_yymvl"]
 [ext_resource type="AudioStream" uid="uid://dq3qu6xuylwki" path="res://assets/music/Menu-Doobly-Doo.mp3" id="3_7y7qc"]
-[ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="6_vmiam"]
+[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="6_vmiam"]
 [ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_sbxmx"]
 [ext_resource type="Texture2D" uid="uid://5ww63px5ejnr" path="res://assets/images/Score Counter.png" id="8_m3d3e"]
 
@@ -12,7 +12,6 @@ texture = ExtResource("8_m3d3e")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_x4v0a")
-max_scenes = 3
 sentence_delay = 3
 
 [node name="BGImage" type="TextureRect" parent="."]
