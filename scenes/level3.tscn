@@ -63,21 +63,21 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_7hocn")
+script = ExtResource("1_n3sd8")
+current_level = 3
 max_scenes = 3
-sentence_delay = 3
 
 [node name="BGImage" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_avfr5")
+texture = ExtResource("2_5ae3l")
 expand_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(580, 322)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_rtaww")
+texture = ExtResource("3_u6knw")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
@@ -89,7 +89,7 @@ speed_scale = 1.5
 [node name="FGImage" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("3_ksb10")
+texture = ExtResource("4_x617k")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -97,7 +97,7 @@ stream = ExtResource("5_im751")
 autoplay = true
 bus = &"BackgroundMusic"
 
-[node name="OptionsMenu" parent="." instance=ExtResource("3_c8txr")]
+[node name="OptionsMenu" parent="." instance=ExtResource("6_mgipe")]
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -110,7 +110,7 @@ offset_top = 28.0
 offset_right = 830.0
 offset_bottom = 131.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_gy0tu")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the question text?"
 scroll_active = false
@@ -124,7 +124,7 @@ offset_top = 507.0
 offset_right = 830.0
 offset_bottom = 610.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_gy0tu")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the response text."
 scroll_active = false
@@ -135,6 +135,7 @@ offset_left = 13.0
 offset_top = 574.0
 offset_right = 146.0
 offset_bottom = 621.0
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_gy0tu")
+text = "0"
 scroll_active = false
 shortcut_keys_enabled = false

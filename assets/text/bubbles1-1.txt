@@ -1,3 +1,3 @@
-What day is today? | 0; Wednesday |0; Friday |0; Yeah Friday. |0; She looks gorgeous. |0; So pretty. |0 /n
-I love Italian food. |1; Wait, why'd I get a steak? | 0; I failed Italian in high school. |0; Mrs. Romano was the worst. |0; Should have taken Spanish.|-2 /n
-Why DID I get a steak? |0; Steak |1; Stake.|0; Vampires are in now… |0; Should we watch Nosferatu? |0;Buffy? Blade? |0;You love spaghetti.|3;You had a great day.|-1 /n 
+It’s too early. |0; So tired. |0; So sleepy. |0; It’s Friday. |0; Wednesday? |0; So close to the weekend. |0 /n
+Metaphors… |1; He has a garden?| 0; What does he grow? |0; Now I’m hungry. |0; I wanna eat.|0 /n
+Seeds.|1; Roots.|1; Branches.|1; Maintenance and attention.|3; Farming.|0;So hungry...|0 /n 
