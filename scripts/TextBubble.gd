@@ -2,7 +2,7 @@ extends Node
 class_name TextBubble
 
 @export var bubble_text:String = "Default Button Text"
-@onready var text_Label:RichTextLabel = $TextureButton/RichTextLabel
+@onready var text_Label:Label = $TextureButton/Label
 @export var correctness:int = 0
 var disabled:bool = false
 @export var wiggle_speed:float = .02
