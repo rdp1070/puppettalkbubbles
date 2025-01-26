@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2fabd66dn50l"]
+[gd_scene load_steps=14 format=3 uid="uid://c2fabd66dn50l"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oe3x8"]
 [ext_resource type="Texture2D" uid="uid://b6h3m82s72u6w" path="res://assets/images/Cafe BG.png" id="2_ycrqe"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://vgp8s3jsasxy" path="res://assets/images/Cafe FG.png" id="4_u8s1w"]
 [ext_resource type="AudioStream" uid="uid://cxqkdhpyfmps6" path="res://assets/music/Cafe-Smooth-Lovin.mp3" id="5_2fp8k"]
 [ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="6_jcutv"]
+[ext_resource type="Texture2D" uid="uid://5ww63px5ejnr" path="res://assets/images/Score Counter.png" id="6_l8wtx"]
 [ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_1nj5t"]
 
 [sub_resource type="Animation" id="Animation_kcxqi"]
@@ -62,6 +63,9 @@ _data = {
 "talk_shocked": SubResource("Animation_vbo5f")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ixada"]
+texture = ExtResource("6_l8wtx")
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_oe3x8")
 current_level = 2
@@ -104,13 +108,14 @@ offset_right = 1152.0
 offset_bottom = 648.0
 
 [node name="QuestionText" type="RichTextLabel" parent="."]
-visible = false
 z_index = 50
 offset_left = 323.0
 offset_top = 28.0
 offset_right = 830.0
 offset_bottom = 131.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/normal_font = ExtResource("7_1nj5t")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the question text?"
@@ -131,12 +136,21 @@ text = "This is the response text."
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = 10.0
+offset_top = 467.0
+offset_right = 264.0
+offset_bottom = 640.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_ixada")
+
 [node name="ScoreLabel" type="RichTextLabel" parent="."]
-offset_left = 13.0
-offset_top = 574.0
-offset_right = 146.0
-offset_bottom = 621.0
+offset_left = 38.0
+offset_top = 525.0
+offset_right = 236.0
+offset_bottom = 589.0
+theme_override_colors/default_color = Color(0.176471, 0.309804, 0.647059, 1)
 theme_override_fonts/normal_font = ExtResource("7_1nj5t")
+theme_override_font_sizes/normal_font_size = 55
 text = "0"
 scroll_active = false
 shortcut_keys_enabled = false
