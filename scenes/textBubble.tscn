@@ -7,15 +7,10 @@
 script = ExtResource("1_6gsf0")
 
 [node name="TextureButton" type="TextureButton" parent="."]
-clip_contents = true
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 557.0
+offset_bottom = 547.0
 localize_numeral_system = false
 texture_normal = ExtResource("2_oa037")
-stretch_mode = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TextureButton"]
 layout_mode = 0

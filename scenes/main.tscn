@@ -1,6 +1,88 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=9 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
+[ext_resource type="Texture2D" uid="uid://k2wh54goh86k" path="res://assets/images/Restaurant BG.png" id="2_avfr5"]
+[ext_resource type="Texture2D" uid="uid://bjkbgbb6f6wa0" path="res://assets/images/Restaurant FG.png" id="3_ksb10"]
+[ext_resource type="Texture2D" uid="uid://dwrb626uo03ux" path="res://assets/images/Belinda Spritesheet.png" id="3_rtaww"]
+
+[sub_resource type="Animation" id="Animation_nrsim"]
+resource_name = "talk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 0, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_kcxqi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vbo5f"]
+resource_name = "talk_shocked"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 2, 3, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3ph5e"]
+_data = {
+"RESET": SubResource("Animation_kcxqi"),
+"talk": SubResource("Animation_nrsim"),
+"talk_shocked": SubResource("Animation_vbo5f")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7hocn")
+
+[node name="BGImage" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_avfr5")
+expand_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(578.811, 324.856)
+scale = Vector2(0.402313, 0.402313)
+texture = ExtResource("3_rtaww")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_3ph5e")
+}
+speed_scale = 1.5
+
+[node name="FGImage" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("3_ksb10")
+expand_mode = 1
