@@ -4,6 +4,9 @@ extends Node
 var ScrollText = preload("res://scenes/ScrollText.tscn")
 var TextBubble = preload("res://scenes/TextBubble.tscn")
 
+@onready var belinda_anim:AnimationPlayer = $Sprite2D/AnimationPlayer
+
+
 # reference to Options Menu 
 @onready var optionsMenu = $OptionsMenu
 
@@ -18,6 +21,7 @@ var base_score: int = 10
 
 @export var current_level: int = 1
 @export var max_scenes = 2
+@export var sentence_delay = 2
 var current_scene: int = 1
 var current_phrase: int = 0
 
@@ -52,6 +56,7 @@ func load_text_file(path:String):
 	return FileAccess.open(path, FileAccess.READ).get_as_text()
 
 func scrollWords() -> void:
+	await get_tree().create_timer(sentence_delay).timeout
 	print_debug("inside scroll words")
 	# in here we are goin to use the new array we just made in setup
 	# we will use this array in order to create all the scrolling word child scenes.
@@ -60,6 +65,7 @@ func scrollWords() -> void:
 	
 	if (listScrollTexts.size() > 0):
 		add_child(listScrollTexts[0])
+		belinda_anim.play("talk")
 	else:
 		activateSelectMode()
 	pass
@@ -94,6 +100,7 @@ func _optionsMenu():
 	paused = !paused
 
 func activateSelectMode(): 
+	belinda_anim.stop()
 #	 go over the remaining bubbles on the screen and turn score mode on
 	for bubble:TextBubble in activeTextBubblesDict.values():
 		bubble.score_mode = true
@@ -156,6 +163,7 @@ func _on_scrollText_off_screen(node: Node2D):
 	remove_child(node)
 	node.queue_free()
 	listScrollTexts.remove_at(0)
+	belinda_anim.stop()
 	makeBubbles()
 	scrollWords()
 	pass
