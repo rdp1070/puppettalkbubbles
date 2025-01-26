@@ -63,6 +63,8 @@ _data = {
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_7hocn")
+max_scenes = 3
+sentence_delay = 3
 
 [node name="BGImage" type="TextureRect" parent="."]
 offset_right = 1152.0

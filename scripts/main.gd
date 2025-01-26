@@ -24,6 +24,7 @@ var base_score: int = 10
 @export var current_level: int = 1
 @export var max_scenes = 2
 @export var sentence_delay = 2
+@export var bubble_delay = .3
 var current_scene: int = 1
 var current_phrase: int = 0
 var last_sentence = ""
@@ -58,8 +59,15 @@ func setUp() -> void:
 		current_phrase=0
 		load_sentences()
 		load_bubbles()
+	else: 
+		load_next()
 	pass
 
+func load_next():
+	print_debug("inside load_next")
+	#load the next level here
+	pass
+	
 func load_text_file(path:String):
 	return FileAccess.open(path, FileAccess.READ).get_as_text()
 
@@ -86,6 +94,8 @@ func makeBubbles() -> void:
 		for textBubble:TextBubble in curPhrase:
 			add_child(textBubble)
 			activeTextBubblesDict.get_or_add(textBubble.id, textBubble)
+			await get_tree().create_timer(bubble_delay).timeout
+
 	pass
 	current_phrase+=1
 
@@ -133,6 +143,16 @@ func setResponseText(correctness:int):
 				questionText.text = "Huh? Are you listening?"
 			else:
 				questionText.text = "Oh wonderful! The food here is great!"
+		elif (current_scene == 2):
+			if correctness < 1:
+				questionText.text = "That’s a horrible suggestion."
+			else:
+				questionText.text = "Great idea! I should be able to print on time then."
+		elif (current_scene == 3):
+			if correctness < 1:
+				questionText.text = "Maybe I’ll just travel alone..."
+			else:
+				questionText.text = "Yay, let’s plan together!"
 	pass
 
 func popAllBubbles():
@@ -211,6 +231,7 @@ func _on_bubble_pop(bubble: TextBubble):
 func _on_select_bubble(bubble: TextBubble):
 	print_debug("inside select bubble")
 	updateScore(score+(base_score*bubble.correctness))
+	popAllBubbles()
 	updateResponse(bubble.bubble_text)
 	playReaction(bubble.correctness)
 	await get_tree().create_timer(sentence_delay).timeout
