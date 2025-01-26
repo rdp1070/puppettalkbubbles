@@ -139,7 +139,7 @@ func playReaction(correctness:int):
 func setResponseText(correctness:int):
 	# we want to check which scene and sentence it is and do it manually here.
 	# ain't got time for programmatically loading it from somewhere.
-	if (current_level == 1):
+	if (current_level == 3):
 		if (current_scene == 1):
 			if correctness < 1:
 				questionText.text = "Huh? Are you listening?"

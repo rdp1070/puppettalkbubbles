@@ -1,12 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=12 format=3 uid="uid://c8xmn6t54qjcm"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
-[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_3a0x6"]
-[ext_resource type="Texture2D" uid="uid://k2wh54goh86k" path="res://assets/images/Restaurant BG.png" id="2_avfr5"]
-[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="3_c8txr"]
-[ext_resource type="Texture2D" uid="uid://bjkbgbb6f6wa0" path="res://assets/images/Restaurant FG.png" id="3_ksb10"]
-[ext_resource type="Texture2D" uid="uid://dwrb626uo03ux" path="res://assets/images/Belinda Spritesheet.png" id="3_rtaww"]
-[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_bomer"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_oe3x8"]
+[ext_resource type="Texture2D" uid="uid://b6h3m82s72u6w" path="res://assets/images/Cafe BG.png" id="2_ycrqe"]
+[ext_resource type="Texture2D" uid="uid://c6aahibhgrmfk" path="res://assets/images/Kristoff Spritesheet.png" id="3_10ynj"]
+[ext_resource type="Texture2D" uid="uid://vgp8s3jsasxy" path="res://assets/images/Cafe FG.png" id="4_u8s1w"]
+[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="5_pnkai"]
+[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="6_jcutv"]
+[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_1nj5t"]
 
 [sub_resource type="Animation" id="Animation_kcxqi"]
 length = 0.001
@@ -63,21 +63,22 @@ _data = {
 }
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_7hocn")
+script = ExtResource("1_oe3x8")
+current_level = 2
 max_scenes = 3
 sentence_delay = 3
 
 [node name="BGImage" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("2_avfr5")
+texture = ExtResource("2_ycrqe")
 expand_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(580, 322)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("3_rtaww")
+texture = ExtResource("3_10ynj")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
@@ -89,15 +90,15 @@ speed_scale = 1.5
 [node name="FGImage" type="TextureRect" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("3_ksb10")
+texture = ExtResource("4_u8s1w")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_3a0x6")
+stream = ExtResource("5_pnkai")
 autoplay = true
 bus = &"BackgroundMusic"
 
-[node name="OptionsMenu" parent="." instance=ExtResource("3_c8txr")]
+[node name="OptionsMenu" parent="." instance=ExtResource("6_jcutv")]
 visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -110,7 +111,7 @@ offset_top = 28.0
 offset_right = 830.0
 offset_bottom = 131.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_1nj5t")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the question text?"
 scroll_active = false
@@ -124,7 +125,7 @@ offset_top = 507.0
 offset_right = 830.0
 offset_bottom = 610.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_1nj5t")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the response text."
 scroll_active = false
@@ -135,6 +136,7 @@ offset_left = 13.0
 offset_top = 574.0
 offset_right = 146.0
 offset_bottom = 621.0
-theme_override_fonts/normal_font = ExtResource("7_bomer")
+theme_override_fonts/normal_font = ExtResource("7_1nj5t")
+text = "0"
 scroll_active = false
 shortcut_keys_enabled = false
