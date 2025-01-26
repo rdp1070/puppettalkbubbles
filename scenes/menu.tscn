@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cthl4vo75n06p"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_j3osm"]
-[ext_resource type="AudioStream" uid="uid://brlom75cb1c1n" path="res://assets/music/bubblegame-date.wav" id="2_dbqck"]
+[ext_resource type="AudioStream" uid="uid://brlom75cb1c1n" path="res://assets/music/bubblegame-date(1).wav" id="2_dbqck"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlo5n"]
 
