@@ -11,6 +11,7 @@ var TextBubble = preload("res://scenes/TextBubble.tscn")
 
 @onready var questionText = $QuestionText
 @onready var responseText = $ResponseText
+@onready var scoreText = $ScoreLabel
 
 # load in the file reference itself here
 var sentence_text_file_location = "res://assets/text/sentences%s-%s.txt"
@@ -102,6 +103,7 @@ func makeBubbles() -> void:
 func updateScore(newScore: int):
 	print_debug(newScore)
 	score = newScore
+	scoreText.text = "%s" % score
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
