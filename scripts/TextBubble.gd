@@ -33,12 +33,12 @@ func wiggle(delta: float) -> void:
 
 func setUp() -> void:
 	var vpsize = get_viewport().get_visible_rect().size
-	self.global_position = Vector2(randi() % int(vpsize.x), randi() % int(vpsize.y))
+	self.global_position = Vector2(randi_range(vpsize.x/8, (vpsize.x*7)/8), randi_range(vpsize.y/8, (vpsize.y*7)/8))
 	setText(bubble_text)
-	var rand_scale = (randf_range(.8, 1.5))
+	var rand_scale = (randf_range(.7, 1.3))
 	self.scale.x = rand_scale
 	self.scale.y = rand_scale
-	self.z_index = randi_range(-4,4)
+	self.z_index = randi_range(1,5)
 	pass
 
 func setText(newText: String) -> void:

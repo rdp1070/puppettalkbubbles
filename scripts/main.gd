@@ -6,9 +6,11 @@ var TextBubble = preload("res://scenes/TextBubble.tscn")
 
 @onready var belinda_anim:AnimationPlayer = $Sprite2D/AnimationPlayer
 
-
 # reference to Options Menu 
 @onready var optionsMenu = $OptionsMenu
+
+@onready var questionText = $QuestionText
+@onready var responseText = $ResponseText
 
 # load in the file reference itself here
 var sentence_text_file_location = "res://assets/text/sentences%s-%s.txt"
@@ -24,6 +26,7 @@ var base_score: int = 10
 @export var sentence_delay = 2
 var current_scene: int = 1
 var current_phrase: int = 0
+var last_sentence = ""
 
 var paused = false
 
@@ -36,6 +39,9 @@ func _ready() -> void:
 
 func reset():
 	popAllBubbles()
+	questionText.hide()
+	responseText.hide()
+	belinda_anim.stop()
 	current_scene+=1
 	setUp()
 	scrollWords()
@@ -47,6 +53,8 @@ func setUp() -> void:
 	# split those words on the /n and the new line character
 	# turn this into an array and save it globally.
 	if (current_scene <= max_scenes):
+		questionText.hide()
+		responseText.hide()
 		current_phrase=0
 		load_sentences()
 		load_bubbles()
@@ -73,9 +81,11 @@ func scrollWords() -> void:
 func makeBubbles() -> void: 
 	#bubbles will be worth amount when popped
 	#bubbles will contain text
-	for textBubble:TextBubble in queuedTextBubbles.get(current_phrase):
-		add_child(textBubble)
-		activeTextBubblesDict.get_or_add(textBubble.id, textBubble)
+	var curPhrase = queuedTextBubbles.get(current_phrase, null)
+	if curPhrase != null: 
+		for textBubble:TextBubble in curPhrase:
+			add_child(textBubble)
+			activeTextBubblesDict.get_or_add(textBubble.id, textBubble)
 	pass
 	current_phrase+=1
 
@@ -101,12 +111,28 @@ func _optionsMenu():
 
 func activateSelectMode(): 
 	belinda_anim.stop()
+	questionText.text = last_sentence
+	questionText.show()
 #	 go over the remaining bubbles on the screen and turn score mode on
 	for bubble:TextBubble in activeTextBubblesDict.values():
 		bubble.score_mode = true
 	pass
 
 func playReaction(correctness:int):
+	if correctness < 1:
+		belinda_anim.play("talk_shocked")
+	setResponseText(correctness)
+	pass
+
+func setResponseText(correctness:int):
+	# we want to check which scene and sentence it is and do it manually here.
+	# ain't got time for programmatically loading it from somewhere.
+	if (current_level == 1):
+		if (current_scene == 1):
+			if correctness < 1:
+				questionText.text = "Huh? Are you listening?"
+			else:
+				questionText.text = "Oh wonderful! The food here is great!"
 	pass
 
 func popAllBubbles():
@@ -116,6 +142,10 @@ func popAllBubbles():
 	queuedTextBubbles = {}
 	pass
 	
+func updateResponse(text:String):
+	responseText.text = text
+	responseText.show()
+	pass
 
 func load_sentences():
 	var file_text = load_text_file(sentence_text_file_location % [current_level, current_scene])
@@ -127,6 +157,7 @@ func load_sentences():
 			scroll_text_instance.off_screen.connect(_on_scrollText_off_screen)
 			listScrollTexts.push_back(scroll_text_instance)
 			pass
+		last_sentence = listScrollTexts[listScrollTexts.size()-1].scrolling_text
 	pass
 	
 func load_bubbles():
@@ -142,12 +173,13 @@ func load_bubbles():
 			for bubble in bubble_values:
 				var text_bubble_instance:TextBubble = TextBubble.instantiate()
 				var vals:PackedStringArray = bubble.split("|")
-				text_bubble_instance.bubble_text = vals[0]
-				text_bubble_instance.bubble_pop.connect(_on_bubble_pop)
-				text_bubble_instance.select_bubble.connect(_on_select_bubble)
-				text_bubble_instance.correctness = int(vals[0])
-				text_bubble_instance.id = randi_range(-10000,10000)
-				sceneBubbleArray.append(text_bubble_instance)
+				if !vals[0].is_empty() and vals.size() > 1: 
+					text_bubble_instance.bubble_text = vals[0]
+					text_bubble_instance.bubble_pop.connect(_on_bubble_pop)
+					text_bubble_instance.select_bubble.connect(_on_select_bubble)
+					text_bubble_instance.correctness = int(vals[1])
+					text_bubble_instance.id = randi_range(-10000,10000)
+					sceneBubbleArray.append(text_bubble_instance)
 				pass
 			queuedTextBubbles.get_or_add(index, sceneBubbleArray)
 			index+=1
@@ -179,7 +211,9 @@ func _on_bubble_pop(bubble: TextBubble):
 func _on_select_bubble(bubble: TextBubble):
 	print_debug("inside select bubble")
 	updateScore(score+(base_score*bubble.correctness))
+	updateResponse(bubble.bubble_text)
 	playReaction(bubble.correctness)
+	await get_tree().create_timer(sentence_delay).timeout
 	reset()
 	
 	pass
