@@ -1,0 +1,169 @@
+[gd_scene load_steps=12 format=3 uid="uid://ecovf1t8uogl"]
+
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ba5h6"]
+[ext_resource type="Texture2D" uid="uid://cub2enlk4aw3a" path="res://assets/images/PBP-BG1.png" id="2_ihlhw"]
+[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="3_yeord"]
+[ext_resource type="AudioStream" uid="uid://dq3qu6xuylwki" path="res://assets/music/Menu-Doobly-Doo.mp3" id="4_5vcc8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a1yh8"]
+texture = ExtResource("2_ihlhw")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlo5n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k0g4j"]
+bg_color = Color(1, 0.356863, 0.623529, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+shadow_color = Color(0.486275, 0.65098, 1, 0.541176)
+shadow_size = 18
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tkkh"]
+bg_color = Color(1, 0.172549, 0.572549, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+shadow_color = Color(0.486275, 0.65098, 1, 0.541176)
+shadow_size = 20
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1vlc"]
+bg_color = Color(1, 0.52549, 0.698039, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+shadow_color = Color(0.486275, 0.65098, 1, 0.403922)
+shadow_size = 12
+shadow_offset = Vector2(0, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wpvux"]
+bg_color = Color(1, 0.356863, 0.623529, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8ojj"]
+bg_color = Color(1, 0.172549, 0.572549, 1)
+corner_radius_top_left = 999
+corner_radius_top_right = 999
+corner_radius_bottom_right = 999
+corner_radius_bottom_left = 999
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ba5h6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_a1yh8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -211.0
+offset_right = 296.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_yeord")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k0g4j")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0tkkh")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
+text = "Play"
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_default_cursor_shape = 2
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_yeord")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wpvux")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a8ojj")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
+text = "Quit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5vcc8")
+autoplay = true
+bus = &"BackgroundMusic"
+
+[node name="Instructions" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 56.0
+offset_bottom = 196.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.995924, 0.432243, 0.721705, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("3_yeord")
+theme_override_font_sizes/font_size = 100
+text = "Puppet Bubble Panic"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 137.0
+offset_top = -115.0
+offset_right = -137.0
+offset_bottom = 81.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.149045, 0.0648131, 0.305313, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 13
+theme_override_fonts/font = ExtResource("3_yeord")
+theme_override_font_sizes/font_size = 32
+text = "Help Pierre get through his day! He has many things to do today but lots of errant thought bubbles plague his mind. Help him get rid of the thoughts that distract from his conversations by clicking on them. Don’t pop thoughts that are relevant to the conversation, you need them to answer positively!"
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

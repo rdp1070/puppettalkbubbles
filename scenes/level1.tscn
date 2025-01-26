@@ -1,12 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch62edbji7d6l"]
+[gd_scene load_steps=14 format=3 uid="uid://dq2ooc42bxk3"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="2_54sq5"]
 [ext_resource type="Texture2D" uid="uid://co2fs5tlbpmmn" path="res://assets/images/Classroom BG.png" id="2_tln1w"]
 [ext_resource type="Texture2D" uid="uid://cnxj7rppwqhb" path="res://assets/images/Professor Mister Spritesheet.png" id="3_6dvat"]
 [ext_resource type="Texture2D" uid="uid://0utroeevcsbm" path="res://assets/images/Classroom FG.png" id="4_hm6db"]
-[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="5_1hm8c"]
-[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="6_x5465"]
+[ext_resource type="AudioStream" uid="uid://kp1veq715i23" path="res://assets/music/Class-JerryFive.mp3" id="5_cw7sq"]
+[ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="6_x5465"]
 [ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_1hoj3"]
+[ext_resource type="Texture2D" uid="uid://5ww63px5ejnr" path="res://assets/images/Score Counter.png" id="8_ncivb"]
 
 [sub_resource type="Animation" id="Animation_kcxqi"]
 length = 0.001
@@ -62,6 +63,9 @@ _data = {
 "talk_shocked": SubResource("Animation_vbo5f")
 }
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2irh3"]
+texture = ExtResource("8_ncivb")
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("2_54sq5")
 
@@ -91,7 +95,7 @@ texture = ExtResource("4_hm6db")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1hm8c")
+stream = ExtResource("5_cw7sq")
 autoplay = true
 bus = &"BackgroundMusic"
 
@@ -108,6 +112,8 @@ offset_top = 28.0
 offset_right = 830.0
 offset_bottom = 131.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 20
 theme_override_fonts/normal_font = ExtResource("7_1hoj3")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the question text?"
@@ -121,19 +127,27 @@ offset_left = 323.0
 offset_top = 507.0
 offset_right = 830.0
 offset_bottom = 610.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("7_1hoj3")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the response text."
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="Panel" type="Panel" parent="."]
+offset_left = 10.0
+offset_top = 467.0
+offset_right = 264.0
+offset_bottom = 640.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_2irh3")
+
 [node name="ScoreLabel" type="RichTextLabel" parent="."]
-offset_left = 13.0
-offset_top = 574.0
-offset_right = 146.0
-offset_bottom = 621.0
+offset_left = 38.0
+offset_top = 525.0
+offset_right = 236.0
+offset_bottom = 589.0
+theme_override_colors/default_color = Color(0.176471, 0.309804, 0.647059, 1)
 theme_override_fonts/normal_font = ExtResource("7_1hoj3")
+theme_override_font_sizes/normal_font_size = 55
 text = "0"
 scroll_active = false
 shortcut_keys_enabled = false
