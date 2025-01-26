@@ -142,6 +142,22 @@ func setResponseText(correctness:int):
 	if (current_level == 1):
 		if (current_scene == 1):
 			if correctness < 1:
+				questionText.text = "Hey…I didn’t think what I said was confusing…"
+			else:
+				questionText.text = "Excellent! You’ve been paying attention."
+		elif (current_scene == 2):
+			if correctness < 1:
+				questionText.text = "That’s the wrong takeaway…"
+			else:
+				questionText.text = "You got it! Your attention skills are impeccable!"
+		elif (current_scene == 3):
+			if correctness < 1:
+				questionText.text = "You have some more studying to do…"
+			else:
+				questionText.text = "Wonderful! You’re definitely prepared!"
+	elif (current_level == 3):
+		if (current_scene == 1):
+			if correctness < 1:
 				questionText.text = "Huh? Are you listening?"
 			else:
 				questionText.text = "Oh wonderful! The food here is great!"

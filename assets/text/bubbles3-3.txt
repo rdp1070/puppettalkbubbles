@@ -1,0 +1,3 @@
+Should I go to Italy? |1;No... I can’t speak italian.|0;Vlogs are fun. |0;I like Let’s plays. |0;I like to watch lawn care videos|0;I hate yard work |0;Do I need to mow my lawn?|0;I hate planes.|0 /n
+France, very romantic.|1; I wonder if those meatballs are German sausage…|0; How tall is that tower?|0; Like the one in Tokyo...|0; Tokyo, Japan...|0;Maybe I learn Japanese?|0 /n
+Italy |-1; Germany |3; Do I have any PTO?|0; My boss sucks…|0;I need a vacation.|0 /n 

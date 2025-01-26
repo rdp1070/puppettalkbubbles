@@ -1,0 +1,3 @@
+Geraldine…isn't that a wine? |0;I think I’m drunk.|0;Did I meet her? |0;Geraldine seems nice… |0;Holiday Party? |0;Christmas |0;Halloween|0;Trouble…bubble…|0 /n
+I hate printers.|-1; IT?|-1; No, I am drunk.|0; Definitely Halloween|0; How many files?|0;Where does she work?|0 /n
+Email them. |-1; Borrow my printer. |3; Contact IT.|-1; Ask Geraldine|-1;Today’s Friday.|0;So many files.|0;Try the library.|1;Try the store.|1; /n 
