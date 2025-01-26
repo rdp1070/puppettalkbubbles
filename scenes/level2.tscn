@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2fabd66dn50l"]
+[gd_scene load_steps=14 format=3 uid="uid://c8xmn6t54qjcm"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_oe3x8"]
 [ext_resource type="Texture2D" uid="uid://b6h3m82s72u6w" path="res://assets/images/Cafe BG.png" id="2_ycrqe"]
 [ext_resource type="Texture2D" uid="uid://c6aahibhgrmfk" path="res://assets/images/Kristoff Spritesheet.png" id="3_10ynj"]
 [ext_resource type="Texture2D" uid="uid://vgp8s3jsasxy" path="res://assets/images/Cafe FG.png" id="4_u8s1w"]
 [ext_resource type="AudioStream" uid="uid://cxqkdhpyfmps6" path="res://assets/music/Cafe-Smooth-Lovin.mp3" id="5_2fp8k"]
-[ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="6_jcutv"]
+[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="6_jcutv"]
 [ext_resource type="Texture2D" uid="uid://5ww63px5ejnr" path="res://assets/images/Score Counter.png" id="6_l8wtx"]
 [ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_1nj5t"]
 
