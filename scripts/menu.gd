@@ -13,3 +13,7 @@ func _on_quit_pressed():
 func _on_audio_pressed():
 	var masterBusIndex = AudioServer.get_bus_index("Master")
 	AudioServer.set_bus_mute(masterBusIndex, !AudioServer.is_bus_mute(masterBusIndex))
+
+
+func _on_instructions_pressed():
+	get_tree().change_scene_to_file("res://scenes/instructions.tscn")
