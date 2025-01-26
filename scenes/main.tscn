@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0jf7ejt8ak07"]
+[gd_scene load_steps=12 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
 [ext_resource type="Texture2D" uid="uid://k2wh54goh86k" path="res://assets/images/Restaurant BG.png" id="2_avfr5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bjkbgbb6f6wa0" path="res://assets/images/Restaurant FG.png" id="3_ksb10"]
 [ext_resource type="Texture2D" uid="uid://dwrb626uo03ux" path="res://assets/images/Belinda Spritesheet.png" id="3_rtaww"]
 [ext_resource type="AudioStream" uid="uid://brlom75cb1c1n" path="res://assets/music/bubblegame-date(1).wav" id="5_im751"]
+[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="7_bomer"]
 
 [sub_resource type="Animation" id="Animation_kcxqi"]
 length = 0.001
@@ -109,6 +110,7 @@ offset_top = 28.0
 offset_right = 830.0
 offset_bottom = 131.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_bomer")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the question text?"
 scroll_active = false
@@ -122,7 +124,17 @@ offset_top = 507.0
 offset_right = 830.0
 offset_bottom = 610.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("7_bomer")
 theme_override_font_sizes/normal_font_size = 32
 text = "This is the response text."
+scroll_active = false
+shortcut_keys_enabled = false
+
+[node name="ScoreLabel" type="RichTextLabel" parent="."]
+offset_left = 13.0
+offset_top = 574.0
+offset_right = 146.0
+offset_bottom = 621.0
+theme_override_fonts/normal_font = ExtResource("7_bomer")
 scroll_active = false
 shortcut_keys_enabled = false
