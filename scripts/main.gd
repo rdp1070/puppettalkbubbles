@@ -23,12 +23,13 @@ var score:int = 0
 var base_score: int = 10
 
 @export var current_level: int = 1
-@export var max_scenes = 2
+@export var max_scenes = 3
 @export var sentence_delay = 2
 @export var bubble_delay = .3
 var current_scene: int = 1
 var current_phrase: int = 0
 var last_sentence = ""
+var max_level = 3
 
 var paused = false
 
@@ -46,7 +47,6 @@ func reset():
 	belinda_anim.stop()
 	current_scene+=1
 	setUp()
-	scrollWords()
 pass
 
 func setUp() -> void:
@@ -60,13 +60,20 @@ func setUp() -> void:
 		current_phrase=0
 		load_sentences()
 		load_bubbles()
+		scrollWords()
 	else: 
-		load_next()
+		load_next_level()
 	pass
 
-func load_next():
-	print_debug("inside load_next")
+func load_next_level():
+	print_debug("inside load_next_level")
 	#load the next level here
+	current_level += 1
+	if current_level < max_level:
+		var level_string ="res://scenes/level%s.tscn" % current_level
+		await get_tree().change_scene_to_file(level_string)
+	else:
+		await get_tree().change_scene_to_file("res://scenes/menu.tscn")
 	pass
 	
 func load_text_file(path:String):
@@ -155,6 +162,22 @@ func setResponseText(correctness:int):
 				questionText.text = "You have some more studying to do…"
 			else:
 				questionText.text = "Wonderful! You’re definitely prepared!"
+	elif (current_level == 2):
+		if (current_scene == 1):
+			if correctness < 1:
+				questionText.text = "No way, that’s not correct at all…oh well…"
+			else:
+				questionText.text = "Perfect, sounds delicious!"
+		elif (current_scene == 2):
+			if correctness < 1:
+				questionText.text = "That’s not right but I’ll give it a try…"
+			else:
+				questionText.text = "Good! That’s just what I wanted!"
+		elif (current_scene == 3):
+			if correctness < 1:
+				questionText.text = "Dude…I thought we were closer than that."
+			else:
+				questionText.text = "Thanks man, you’re the best!"
 	elif (current_level == 3):
 		if (current_scene == 1):
 			if correctness < 1:

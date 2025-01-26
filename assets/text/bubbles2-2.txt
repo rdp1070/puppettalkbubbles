@@ -1,0 +1,4 @@
+Ramen.|0; I feel that.|0; My break’s in 30 mins.|0; I wanna sit down.|0 /n
+Turkey ham|0; I haven’t eaten yet| 0; Dinner with Belinda soon|0; I haven’t tried the specials|0; They might be good|0 /n
+Sandwich with ham and cheddar on wheat|0; Sandwich with turkey and swiss on rye|0; Sandwich with turkey and cheddar on wheat|3; Sandwich with ham and swiss on rye|0; Sandwich with turkey and swiss on wheat|0;Sandwich with ham and cheddar on rye|0 /n 
+Uhhh|-1;

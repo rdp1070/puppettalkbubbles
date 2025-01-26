@@ -1,0 +1,4 @@
+I’m tired.|0;Did I leave my laptop on?|0; I wanna go home.|0; But money.|0 /n
+That is rough.|0;I’m glad cafes don’t have night shifts.|0; Who drinks coffee at night?|0;Night.|0;Owls.|0 /n
+Small tea with almond milk|0;Small coffee with soy milk|0; Large coffee with soy milk|3;Large tea with soy milk|0; Large coffee with almond milk|0 /n 
+Uhhh|-1;
