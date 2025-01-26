@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://d0jf7ejt8ak07"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_7hocn"]
-[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_3a0x6"]
 [ext_resource type="Texture2D" uid="uid://k2wh54goh86k" path="res://assets/images/Restaurant BG.png" id="2_avfr5"]
-[ext_resource type="PackedScene" path="res://scenes/optionsMenu.tscn" id="3_c8txr"]
+[ext_resource type="PackedScene" uid="uid://bswpnjcoljtht" path="res://scenes/optionsMenu.tscn" id="3_c8txr"]
 [ext_resource type="Texture2D" uid="uid://bjkbgbb6f6wa0" path="res://assets/images/Restaurant FG.png" id="3_ksb10"]
 [ext_resource type="Texture2D" uid="uid://dwrb626uo03ux" path="res://assets/images/Belinda Spritesheet.png" id="3_rtaww"]
+[ext_resource type="AudioStream" uid="uid://brlom75cb1c1n" path="res://assets/music/bubblegame-date.wav" id="5_im751"]
 
 [sub_resource type="Animation" id="Animation_kcxqi"]
 length = 0.001
@@ -92,7 +92,7 @@ texture = ExtResource("3_ksb10")
 expand_mode = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_3a0x6")
+stream = ExtResource("5_im751")
 autoplay = true
 bus = &"BackgroundMusic"
 

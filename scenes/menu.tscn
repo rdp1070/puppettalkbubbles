@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://cthl4vo75n06p"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_j3osm"]
-[ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_u6jmv"]
+[ext_resource type="AudioStream" uid="uid://brlom75cb1c1n" path="res://assets/music/bubblegame-date.wav" id="2_dbqck"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlo5n"]
 
@@ -107,7 +107,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_i1vlc")
 text = "Quit"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_u6jmv")
+stream = ExtResource("2_dbqck")
 autoplay = true
 bus = &"BackgroundMusic"
 
