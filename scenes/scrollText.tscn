@@ -1,19 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv7w5bwdfw354"]
+[gd_scene load_steps=3 format=3 uid="uid://cv7w5bwdfw354"]
 
 [ext_resource type="Script" path="res://scripts/ScrollText.gd" id="1_23gyc"]
+[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="2_hsvox"]
 
 [node name="ScrollText" type="Node2D"]
 script = ExtResource("1_23gyc")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 clip_contents = false
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 434.0
+offset_bottom = 69.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("2_hsvox")
+theme_override_font_sizes/normal_font_size = 48
 text = "This is example text."
 fit_content = true
 scroll_active = false

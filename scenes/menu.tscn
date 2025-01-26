@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cthl4vo75n06p"]
+[gd_scene load_steps=10 format=3 uid="uid://cthl4vo75n06p"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_j3osm"]
+[ext_resource type="FontFile" uid="uid://brl85s3u5m4ge" path="res://assets/fonts/Comic Khazi.otf" id="2_8c6ud"]
 [ext_resource type="AudioStream" uid="uid://bouq03iil5qv4" path="res://assets/music/Night in Venice.mp3" id="2_u6jmv"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mlo5n"]
@@ -70,9 +71,11 @@ theme_override_constants/separation = 20
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8c6ud")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_k0g4j")
@@ -83,9 +86,11 @@ text = "Play"
 [node name="Audio" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8c6ud")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wpvux")
@@ -96,9 +101,11 @@ text = "Background Music On/Off"
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_default_cursor_shape = 2
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
 theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_8c6ud")
 theme_override_font_sizes/font_size = 40
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mlo5n")
 theme_override_styles/hover = SubResource("StyleBoxFlat_wpvux")
